@@ -21,8 +21,8 @@ public class RabbitConfig {
     private String routingKey;
 
     @Bean
-    public TopicExchange exchange() {
-        return new TopicExchange(exchangeName);
+    public DirectExchange exchange() {
+        return new DirectExchange(exchangeName);
     }
 
     @Bean
@@ -31,7 +31,7 @@ public class RabbitConfig {
     }
 
     @Bean
-    public Binding binding(Queue queue, TopicExchange exchange) {
+    public Binding binding(Queue queue, DirectExchange exchange) {
         return BindingBuilder.bind(queue).to(exchange).with(routingKey);
     }
 
